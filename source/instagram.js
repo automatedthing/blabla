@@ -19,13 +19,14 @@ module.exports = {
             .click('main > article > div > div:nth-child(2) > p > a')
             .screenshot('test.png')
             .wait('[name=username]')
-            .type('[name=username]', 'indo.pictures')
-            .type('[name=password]', 'Cipc0pmimiig')
+            .type('[name=username]', 'instalinkpay')
+            .type('[name=password]', 'Cipc0pmimi')
             .click('form button')
             .wait(2000)
+            //.click('form button')            
             .screenshot('test11.png')
-            .wait('.coreSpriteSearchIcon')
-            .screenshot('done.png')
+            //.wait('.coreSpriteSearchIcon')
+            //.screenshot('done.png')
             .end()
             .then(function() {            
                 console.log("SUCCESS LOGIN");
