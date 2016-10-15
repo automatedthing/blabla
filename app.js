@@ -5,10 +5,12 @@ var twitter = require('./source/twitter')
 var fb = require('./source/fb')
 var youtube = require('./source/youtube')
 var ld = require('./source/linkedin')
+var rollbar = require("rollbar");
+app.use(rollbar.errorHandler('a01722f1c5b442c6bae53030cde6ebaa'));
 function setup(){
   instagram.login()
-  fb.login()
-  ld.login()
+  // fb.login()
+  // ld.login()
 }
 
 function server() {

@@ -2,12 +2,16 @@ var Nightmare = require('nightmare');
 var request = require('request');
 const realMouse = require('nightmare-real-mouse');
 realMouse(Nightmare);
+var rollbar = require("rollbar");
+rollbar.init("a01722f1c5b442c6bae53030cde6ebaa");
 
 module.exports = {
     login: function() {
         var nightmare = Nightmare({
             show: true
         })
+        rollbar.reportMessage("instagram start");
+
         nightmare
             .goto('http://instagram.com')
             .inject('js', 'jquery.js')
@@ -18,11 +22,16 @@ module.exports = {
             .type('[name=username]', 'indo.pictures')
             .type('[name=password]', 'Cipc0pmimiig')
             .click('form button')
+            .wait(2000)
+            .screenshot('test11.png')
             .wait('.coreSpriteSearchIcon')
+            .screenshot('done.png')
             .end()
-            .run(function(err, x) {
-                if (err) return console.log(err);
+            .then(function() {            
                 console.log("SUCCESS LOGIN");
+            })
+            .catch(function(err){
+                rollbar.reportMessage(JSON.stringify(err));
             });
     },
     profile: function(req, res) {
